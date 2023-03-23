@@ -100,7 +100,9 @@ public class FlightSearchSteps {
 	       		+ "//p[contains(@class,'airlineName')])[1]")).getText());
 
 		
-		driver.quit();
+		
+		driver.close();
+		
 	}
 }
 
