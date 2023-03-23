@@ -7,7 +7,4 @@ Feature: Flight Search
     And User sorts the results by departure
     Then User prints the airline name and price with the 2nd lowest price
     
-    @test1
-  Scenario: Compose an email and send it
-    Given I am logged in to Gmail
-    When I compose a new email with subject "Damco"
+    

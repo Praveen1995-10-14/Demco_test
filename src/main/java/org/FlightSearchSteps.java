@@ -33,23 +33,6 @@ public class FlightSearchSteps {
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 	}
 	
-	@Given("^I am logged in to Gmail$")
-    public void i_am_logged_in_to_Gmail() {
-		driver = new FirefoxDriver();
-        driver.navigate().to("https://mail.google.com/");
-        // Enter email and password and click on the Sign in button
-        WebElement emailInput = driver.findElement(By.id("identifierId"));
-        emailInput.sendKeys("nitin91.gautam@gmail.com");
-        WebElement nextButton = driver.findElement(By.id("identifierNext"));
-        nextButton.click();
-        
-     //   WebElement passwordInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("password")));
-    //    passwordInput.sendKeys("Ab56348!!");
-        WebElement passwordNextButton = driver.findElement(By.id("passwordNext"));
-        passwordNextButton.click();
-    
-	}
-	
 	@When("User searches for flights from Delhi to Mumbai")
 	public void user_searches_for_flights_from_delhi_to_mumbai() throws InterruptedException {
 		driver.findElement(By.xpath("//*[@id='fromCity']")).click();
@@ -60,16 +43,6 @@ public class FlightSearchSteps {
 	       driver.findElement(By.xpath("//*[text()='BOM']")).click();
 	       
 	}
-	
-	 @When("^I compose a new email with subject \"([^\"]*)\"$")
-	    public void i_compose_a_new_email_with_subject(String subject) {
-	  //      WebElement composeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Compose']")));
-	  //      composeButton.click();
-	  //      WebElement toInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("to")));
-	  //      toInput.sendKeys("your_email@gmail.com");
-	        WebElement subjectInput = driver.findElement(By.name("subjectbox"));
-	        subjectInput.sendKeys(subject);
-	    }
 	
 	@When("User sorts the results by departure")
 	public void user_sorts_the_results_by_departure() throws InterruptedException {
@@ -91,17 +64,17 @@ public class FlightSearchSteps {
 	           intPrices.add(price);
 	       }
 	       Collections.sort(intPrices);
-	       System.out.println(String.format("%,d", intPrices.get(1)));
+	       System.out.println("Price---->" + String.format("%,d", intPrices.get(1)));
 
 	       String secondLowestPrice =  String.format("%,d", intPrices.get(1));
 	       
-	       System.out.println(driver.findElement(By.xpath("(//p[contains(text(),'"+secondLowestPrice+"')]//ancestor::div[@class='priceSection']"
+	       System.out.println("2nd Lowest Airline Name"+driver.findElement(By.xpath("(//p[contains(text(),'"+secondLowestPrice+"')]//ancestor::div[@class='priceSection']"
 	       		+ "/preceding-sibling::div[contains(@class,'airline-info')]"
 	       		+ "//p[contains(@class,'airlineName')])[1]")).getText());
 
 		
 		
-		driver.close();
+		driver.quit();
 		
 	}
 }
